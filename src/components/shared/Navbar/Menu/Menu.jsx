@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { menuArray } from './menuData';
 
 const Menu = () => {
     return (
-      <>
+      <div className='flex items-center gap-3 text-base font-medium'>
         {menuArray.map((item) => (
-          <Link to={item.route}>{item.menuName}</Link>
+          <NavLink key={item.menuName} to={item.route}>{item.menuName}</NavLink>
         ))}
-      </>
+      </div>
     );
 };
 

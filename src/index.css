@@ -5,3 +5,12 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+.active {
+  color: #f24d5d;
+}
+
+.bg-custom-image {
+  background-image: url("../src/assets/Images/bg_image.svg"); /* Adjust the path based on your folder structure */
+  /* Additional background properties (e.g., size, repeat, position) can be added here */
+}
