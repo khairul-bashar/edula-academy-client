@@ -54,7 +54,7 @@ const Card = () => {
             />
             <div className=" flex items-center justify-center gap-2">
               <div className="bg-cyan-400  w-6 h-6 rounded-full flex items-center justify-center">
-                <BsFillPlayCircleFill size={20} color="" />
+                <BsFillPlayCircleFill size={20} />
               </div>
               <span className="text-xs text-neutral-500">4 Lessons</span>
             </div>

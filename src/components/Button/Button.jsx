@@ -10,7 +10,7 @@ const Button = ({ label, onClick, disabled, outline, small }) => {
           relative
           disabled:opacity-70
           disabled:cursor-not-allowed
-          rounded-lg
+          rounded-sm
           hover:opacity-80
           transition
           pe-10
