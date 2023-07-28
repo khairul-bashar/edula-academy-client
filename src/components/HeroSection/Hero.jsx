@@ -1,5 +1,5 @@
 import React from 'react';
-import bgImage from '../../assets/Images/bg_image.svg';
+import bgImage from '../../assets/Images/online-tutorial.png';
 import bgImage2 from '../../assets/Images/soft-_skill.png';
 import bgImage3 from '../../assets/Images/youth_skills.png';
 import Heading from '../shared/Heading/Heading';

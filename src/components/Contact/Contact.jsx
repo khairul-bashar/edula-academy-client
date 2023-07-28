@@ -5,7 +5,7 @@ import Container from "../shared/Container";
 import Subtitle from "../shared/Heading/Subtitle";
 const Contact = () => {
   return (
-    <div className='bg-cover object-fill bg-center bg-no-repeat bg-[url("../src/assets/Images/contact_bg.jpg")] h-full'>
+    <div id="#contact" className='bg-cover object-fill bg-center bg-no-repeat bg-[url("../src/assets/Images/contact_bg.jpg")] h-full'>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-5 items-center gap-x-14">
           <img src={aboutImg} className="object-cover col-span-2 hidden md:block" alt="" />

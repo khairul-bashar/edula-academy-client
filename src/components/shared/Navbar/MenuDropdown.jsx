@@ -1,9 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const MenuDropdown = () => {
+  const {user, logOut} = useContext(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -25,7 +27,7 @@ const MenuDropdown = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
+        <div className="absolute rounded-md shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
             <Link
               to="/"
@@ -49,7 +51,7 @@ const MenuDropdown = () => {
                   Login
                 </Link>
                 <Link
-                  to="/signup"
+                  to="/signUp"
                   className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                 >
                   Sign Up
