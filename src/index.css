@@ -14,3 +14,15 @@ body {
   background-image: url("../src/assets/Images/bg_image.svg"); /* Adjust the path based on your folder structure */
   /* Additional background properties (e.g., size, repeat, position) can be added here */
 }
+
+.course-btn {
+  width: 100px;
+  padding: 10px 20px; /* Set the background color */
+  color: #000; /* Set the text color */
+  font-size: 16px; /* Set the font size */
+  border: none; /* Add some border radius for a slightly rounded look */
+  cursor: pointer; /* Show a pointer cursor when hovering over the button */
+  display: flex; /* Use flexbox to center the text vertically and horizontally */
+  justify-content: center;
+  align-items: center;
+}
