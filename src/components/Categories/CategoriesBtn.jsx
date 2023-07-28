@@ -36,18 +36,20 @@ const CategoriesBtn = ({ label, selected }) => {
         items-center 
         justify-center 
         gap-2
-        hover:text-neutral-800
+        hover:text-neutral-500
+        border-black
         transition
         cursor-pointer
+        shadow-md
         ${
           selected
-            ? "border-b-neutral-800 bg-primary text-white"
+            ? "border-transparent bg-primary text-white"
             : "border-transparent text-neutral-500"
         }
      
       `}
     >
-      <div className="text-md font-medium shadow-sm py-3 px-5">{label}</div>
+      <div className="text-md font-medium  py-3 px-5">{label}</div>
     </div>
   );
 };

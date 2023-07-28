@@ -1,5 +1,5 @@
-import React from 'react';
-import {HiOutlineArrowLongRight} from 'react-icons/hi2'
+import React from "react";
+import { HiOutlineArrowLongRight } from "react-icons/hi2";
 
 const Button = ({ label, onClick, disabled, outline, small }) => {
   return (

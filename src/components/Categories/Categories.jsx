@@ -8,7 +8,7 @@ const Categories = () => {
   const category = params.get("category");
   return (
     <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto w-9/12 mx-auto">
+      <div className="pt-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 items-center justify-between overflow-x-auto w-fit mx-auto">
         {categories.map((item) => (
           <CategoriesBtn
             label={item.label}
