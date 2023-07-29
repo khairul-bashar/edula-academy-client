@@ -5,6 +5,10 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
+import MyClasses from "../pages/Dashboard/MyClasses";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import AdminLogin from "../pages/Login/Admin/AdminLogin";
 
 
 const router = createBrowserRouter([
@@ -20,6 +24,7 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/signUp", element: <SignUp /> },
+  { path: "/admin", element: <AdminLogin /> },
   {
     path: "/dashboard",
     element: (
@@ -28,10 +33,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      // { path: "/dashboard/", element: <MyBookings /> },
-      // { path: "/dashboard/add-room", element: <AddRoom /> },
-      // { path: "/dashboard/my-bookings", element: <MyBookings /> },
-      // { path: "/dashboard/my-listings", element: <MyListings /> },
+      { path: "/dashboard/", element: <MyClasses /> },
+      { path: "/dashboard/my-classes", element: <MyClasses /> },
+      { path: "/dashboard/enrolled-classes", element: <EnrolledClasses /> },
+      { path: "/dashboard/payment-history", element: <PaymentHistory /> },
     ],
   },
 ]);

@@ -76,7 +76,7 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div>
             <NavLink
-              to="my-bookings"
+              to="my-classes"
               className={({ isActive }) =>
                 `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                   isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -88,7 +88,7 @@ const Sidebar = () => {
               <span className="mx-4 font-medium">My Selected Class</span>
             </NavLink>
             <NavLink
-              to="my-bookings"
+              to="enrolled-classes"
               className={({ isActive }) =>
                 `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                   isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -100,7 +100,7 @@ const Sidebar = () => {
               <span className="mx-4 font-medium">My Enroll Class</span>
             </NavLink>
             <NavLink
-              to="my-bookings"
+              to="payment-history"
               className={({ isActive }) =>
                 `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                   isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
