@@ -14,7 +14,7 @@ const MenuDropdown = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer">
-          AirCNC your home
+          Upload Course
         </div>
         <div
           onClick={toggleOpen}
@@ -35,13 +35,33 @@ const MenuDropdown = () => {
             >
               Home
             </Link>
+            <Link
+              to="/"
+              className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+            >
+              About
+            </Link>
+            <Link
+              to="/"
+              className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+            >
+              Contact
+            </Link>
             {user ? (
-              <div
-                onClick={logOut}
-                className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
-              >
-                Logout
-              </div>
+              <>
+                <Link
+                  to="/dashboard"
+                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                >
+                  Dashboard
+                </Link>
+                <div
+                  onClick={logOut}
+                  className="px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer"
+                >
+                  Logout
+                </div>
+              </>
             ) : (
               <>
                 <Link
