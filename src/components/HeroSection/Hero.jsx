@@ -17,7 +17,7 @@ const Hero = () => {
                 <div className="col-span-3 flex flex-col gap-3 w-96">
                   <Subtitle label="Digital Education" />
                   <Heading
-                    title="Improve Your Digital Skills"
+                    title="Improve Your Photography Skills"
                     subtitle="To make learning more engaging, we incorporate a variety of
                   multimedia resources such as videos," white
                   />
@@ -68,7 +68,7 @@ const Hero = () => {
                   <Subtitle label="Digital Education" />
 
                   <Heading
-                    title="Improve Your Soft Skills"
+                    title="Improve Your Cinematography Skills"
                     subtitle="To make learning more engaging, we incorporate a variety of
                   multimedia resources such as videos" white
                   />
@@ -119,7 +119,7 @@ const Hero = () => {
                   <Subtitle label="Digital Education" />
 
                   <Heading
-                    title="Improve Your Technical Skills"
+                    title="Improve Your Mobile Photography Skills"
                     subtitle="To make learning more engaging, we incorporate a variety of
                   multimedia resources such as videos," white
                   />
