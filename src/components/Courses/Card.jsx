@@ -8,7 +8,7 @@ const Card = ({ course }) => {
   const { course_name, image, course_details, price, author_image, rating, lesson } = course;
   return (
     <div className="col-span-1 cursor-pointer group">
-      <div className="flex flex-col md:flex-row bg-white p-4 rounded-sm shadow-md gap-3 w-full">
+      <div className="flex flex-col md:flex-row bg-white p-4 rounded-sm shadow-md gap-3 w-full h-[300px]">
         <div
           className="
             aspect-square 
