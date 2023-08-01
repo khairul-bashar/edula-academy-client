@@ -5,19 +5,16 @@ export const categories = [
   },
   {
     id: 2,
-    label: "UI Design"
+    label: "Photography Course"
   },
   {
     id: 3,
-    label: "Digital Marketing"
+    label: "Cinematography Course"
   },
   {
     id: 4,
-    label: "Web Development"
+    label: "Mobile Photography Course"
   },
-  {
-    id: 5,
-    label: "Data Science"
-  },
+  
   // Add more courses as needed
 ];

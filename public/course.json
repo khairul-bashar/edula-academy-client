@@ -1,0 +1,168 @@
+[
+
+
+    {
+        "_id": "642c155b2c4774f05c36eeaa",
+        "course_name": "Introduction to Landscape Photography",
+        "course_details": "Learn the basics of landscape photography and capture stunning outdoor scenes.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-1-370x247.jpg",
+        "category": "photography",
+        "price": 14.7,
+        "author_image": "https://i.ibb.co/QpCHR4c/images-7.jpg",
+        "rating": 4.8,
+        "lesson":19
+    },
+    {
+        "_id": "642c155b2c4774f05c36eeb9",
+        "course_name": "Portrait Photography Masterclass",
+        "course_details": "Master the art of portrait photography and capture compelling human expressions.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-1-370x247.jpg",
+        "category": "drinks",
+        "price": 14.7,
+        "author_image": "https://i.ibb.co/sRVYHCc/images-6.jpg",
+        "rating": 4.9,
+        "lesson":10
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee7c",
+        "course_name": "Street Photography Unleashed",
+        "course_details": "Explore the world of street photography and document everyday life in unique ways.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-5-370x247.jpg",
+        "category": "popular",
+        "price": 14.5,
+        "author_image": "https://i.ibb.co/Kq5SM5J/download.jpg",
+        "rating": 4.7,
+        "lesson":6
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee88",
+        "course_name": "Wildlife Photography Expedition",
+        "course_details": "Embark on an exciting wildlife photography expedition and capture majestic creatures in their natural habitat.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
+        "category": "cinematography",
+        "price": 12.5,
+        "author_image": "https://i.ibb.co/fxbGMrx/images-5.jpg",
+        "rating": 4.5,
+        "lesson":8
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee7a",
+        "course_name": "Food Photography for Beginners",
+        "course_details": "Learn the art of food photography and create mouthwatering images for culinary delights.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-5-370x247.jpg",
+        "category": "popular",
+        "price": 14.5,
+        "author_image": "https://i.ibb.co/pxngMQR/images-4.jpg",
+        "rating": 4.6,
+        "lesson":3
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee77",
+        "course_name": "Fashion Photography Secrets",
+        "course_details": "Discover the secrets of fashion photography and capture stunning beauty and style.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-7-370x247.jpg",
+        "category": "popular",
+        "price": 16.3,
+        "author_image": "https://i.ibb.co/Kq5SM5J/download.jpg",
+        "rating": 4.9,
+        "lesson":14
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee86",
+        "course_name": "Night Sky Photography",
+        "course_details": "Learn how to photograph the night sky and capture breathtaking starry landscapes.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-3-370x247.jpg",
+        "category": "photography",
+        "price": 13.2,
+        "author_image": "https://i.ibb.co/fxbGMrx/images-5.jpg",
+        "rating": 4.7,
+        "lesson":4
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee74",
+        "course_name": "Macro Photography: Up Close and Personal",
+        "course_details": "Master the art of macro photography and capture the world of tiny details.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-4-370x247.jpg",
+        "category": "cinematography",
+        "price": 11.9,
+        "author_image": "https://i.ibb.co/pxngMQR/images-4.jpg",
+        "rating": 4.6,
+        "lesson":7
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee9f",
+        "course_name": "Black and White Photography",
+        "course_details": "Explore the artistic side of photography with stunning black and white images.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-6-370x247.jpg",
+        "category": "drinks",
+        "price": 15.0,
+        "author_image": "https://i.ibb.co/KzYkg3T/download-1.jpg",
+        "rating": 4.8,
+        "lesson":19
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee84",
+        "course_name": "Travel Photography: Around the World",
+        "course_details": "Learn how to capture the essence of travel destinations with stunning photography.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-1-370x247.jpg",
+        "category": "popular",
+        "price": 14.2,
+        "author_image": "https://i.ibb.co/Kq5SM5J/download.jpg",
+        "rating": 4.7
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee8c",
+        "course_name": "Underwater Photography",
+        "course_details": "Dive into the world of underwater photography and capture the beauty beneath the waves.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-1-370x247.jpg",
+        "category": "photography",
+        "price": 15.5,
+        "author_image": "https://i.ibb.co/pxngMQR/images-4.jpg",
+        "rating": 4.6,
+        "lesson":19
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee94",
+        "course_name": "Aerial Photography: From Above",
+        "course_details": "Learn how to take stunning aerial photographs from drones and other flying devices.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-5-370x247.jpg",
+        "category": "cinematography",
+        "price": 17.0,
+        "author_image": "https://i.ibb.co/Kq5SM5J/download.jpg",
+        "rating": 4.9,
+        "lesson":3
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee82",
+        "course_name": "Sports Photography: Action Shots",
+        "course_details": "Capture the excitement of sports with action-packed photography.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-2-370x247.jpg",
+        "category": "popular",
+        "price": 13.5,
+        "author_image": "https://i.ibb.co/GnX30Sk/images-2.jpg",
+        "rating": 4.8,
+        "lesson":6
+    },
+    {
+        "_id": "642c155b2c4774f05c36eea4",
+        "course_name": "Mobile Photography: Mastering Your Phone's Camera",
+        "course_details": "Learn how to take professional-looking photos with just your smartphone.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-4-370x247.jpg",
+        "category": "mobile photography",
+        "price": 11.5,
+        "author_image": "https://i.ibb.co/Kq5SM5J/download.jpg",
+        "rating": 4.7,
+        "lesson":3
+    },
+    {
+        "_id": "642c155b2c4774f05c36ee91",
+        "course_name": "Architecture Photography: Building Perspectives",
+        "course_details": "Capture the beauty of architecture with unique and creative photography.",
+        "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-3-370x247.jpg",
+        "category": "cinematography",
+        "price": 15.2,
+        "author_image": "https://i.ibb.co/SfN928v/images.jpg",
+        "rating": 4.6,
+        "lesson":15
+    }
+]

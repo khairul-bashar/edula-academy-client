@@ -9,22 +9,21 @@ import MyClasses from "../pages/Dashboard/MyClasses";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory";
 import AdminLogin from "../pages/Login/Admin/AdminLogin";
-
+import Course from "../components/Courses/Course";
+import Teacher from "../components/Teacher/Teacher";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
+      { path: "/",element: <Home />,},
+      { path: "/courses", element: <Course /> },
+      { path: "/instructor", element: <Teacher /> },
     ],
   },
   { path: "/login", element: <Login /> },
   { path: "/signUp", element: <SignUp /> },
-  { path: "/admin", element: <AdminLogin /> },
   {
     path: "/dashboard",
     element: (
@@ -41,4 +40,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router
+export default router;

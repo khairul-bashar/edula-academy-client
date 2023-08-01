@@ -36,6 +36,7 @@ const CategoriesBtn = ({ label, selected }) => {
         items-center 
         justify-center 
         gap-2
+        hover:bg-slate-200
         hover:text-neutral-500
         border-black
         transition

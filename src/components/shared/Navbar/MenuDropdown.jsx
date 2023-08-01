@@ -36,10 +36,10 @@ const MenuDropdown = () => {
               Home
             </Link>
             <Link
-              to="/"
+              to="/courses"
               className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
             >
-              About
+              Courses
             </Link>
             <Link
               to="/"
