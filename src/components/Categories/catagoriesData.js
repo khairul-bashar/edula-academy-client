@@ -1,19 +1,19 @@
 export const categories = [
   {
     id: 1,
-    label: "All Courses"
+    label: "popular"
   },
   {
     id: 2,
-    label: "Photography Course"
+    label: "photography"
   },
   {
     id: 3,
-    label: "Cinematography Course"
+    label: "cinematography"
   },
   {
     id: 4,
-    label: "Mobile Photography Course"
+    label: "mobile photography"
   },
   
   // Add more courses as needed

@@ -1,10 +1,12 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useFormAction, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { AuthContext } from "../../Providers/AuthProvider";
-import  login2  from "../../assets/Images/login2.png";
+import login2 from "../../assets/Images/login2.png";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const {
@@ -18,15 +20,32 @@ const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+
+   const {
+     register,
+     handleSubmit,
+     formState: { errors },
+     watch,
+     reset,
+   } = useForm();
+
+
   // Handle user registration
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  const onSubmit = async (data) => {
+
+    console.log(data);
+    const {
+      name,
+      email,
+      password
+    } = data;
+
+    
+    
 
     // Image Upload
-    const image = event.target.image.files[0];
+    const image = data.image[0];
+    // console.log(image);
     const formData = new FormData();
     formData.append("image", image);
 
@@ -45,7 +64,13 @@ const SignUp = () => {
           .then((result) => {
             updateUserProfile(name, imageUrl)
               .then(() => {
-                toast.success("Signup successful");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User created successfully!!!.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
                 navigate(from, { replace: true });
               })
               .catch((err) => {
@@ -74,6 +99,13 @@ const SignUp = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        Swal.fire({
+             position: "center",
+             icon: "success",
+             title: "User Login successfully!!!.",
+             showConfirmButton: false,
+             timer: 1500,
+           });
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -92,7 +124,7 @@ const SignUp = () => {
           <h1 className="my-1 text-4xl font-bold">Sign Up</h1>
         </div>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           noValidate=""
           action=""
           className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -104,8 +136,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                {...register("name", { required: true })}
                 placeholder="Enter Your Name Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
@@ -118,8 +149,7 @@ const SignUp = () => {
               <input
                 required
                 type="file"
-                id="image"
-                name="image"
+                {...register("image", { required: true })}
                 accept="image/*"
               />
             </div>
@@ -129,8 +159,7 @@ const SignUp = () => {
               </label>
               <input
                 type="email"
-                name="email"
-                id="email"
+                {...register("email", { required: true })}
                 required
                 placeholder="Enter Your Email Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
@@ -145,8 +174,7 @@ const SignUp = () => {
               </div>
               <input
                 type="password"
-                name="password"
-                id="password"
+                {...register("password", { required: true })}
                 required
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"

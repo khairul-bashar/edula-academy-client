@@ -5,7 +5,7 @@ import Container from "../shared/Container";
 import CategoriesBtn from "./CategoriesBtn";
 const Categories = () => {
   const [params, setParams] = useSearchParams();
-  const category = params.get("/courses/category");
+  const category = params.get("category");
   return (
     <Container>
       <div className="pt-4 grid grid-cols-2 md:grid-cols-4 gap-3 items-center justify-between overflow-x-auto w-fit mx-auto">

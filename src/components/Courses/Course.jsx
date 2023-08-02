@@ -7,11 +7,17 @@ import Card from './Card';
 import Button from '../Button/Button';
 import { Helmet } from 'react-helmet-async';
 import useCourse from '../../hooks/useCourse';
+import { useSearchParams } from 'react-router-dom';
 
 const Course = () => {
+  const [params, setParams] = useSearchParams('');
+  const category = params.get("category");
 
-  const [courses] = useCourse()
 
+  
+  const [courses] = useCourse(category);
+  const allCourses = category ? courses.filter(course => course.category == category) : courses;
+  
     const [activeTab, setActiveTab] = useState("remote");
     const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -26,9 +32,9 @@ const Course = () => {
       <Categories />
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10">
-          {
-            courses.map(course => <Card key={course._id} course={course} />)
-          }
+          {allCourses.map((course) => (
+            <Card key={course._id} course={course} />
+          ))}
         </div>
         <div>
           <div className="text-center">

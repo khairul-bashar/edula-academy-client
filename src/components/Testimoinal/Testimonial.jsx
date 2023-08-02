@@ -12,9 +12,9 @@ import Heading from "../shared/Heading/Heading";
 const Testimonial = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('reviews.json')
-            .then(res => res.json())
-        .then(data => setReviews(data))
+        fetch("http://localhost:3000/reviews")
+          .then((res) => res.json())
+          .then((data) => setReviews(data));
     },[])
   return (
     <div className='py-10 md:py-14 bg-cover bg-center bg-no-repeat bg-[url("../src/assets/Images/Moon.svg")]'>

@@ -48,7 +48,7 @@ const Sidebar = () => {
         <div>
           {/* Branding & Profile Info */}
           <div>
-            <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+            <div className="w-full flex py-2 justify-center items-center bg-rose-100 mx-auto">
               <Logo />
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">

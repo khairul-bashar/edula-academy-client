@@ -18,7 +18,7 @@ const CategoriesBtn = ({ label, selected }) => {
 
     const url = qs.stringifyUrl(
       {
-        url: "/",
+        url: "/courses",
         query: updatedQuery,
       },
       { skipNull: true }

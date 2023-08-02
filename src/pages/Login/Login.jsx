@@ -5,6 +5,7 @@ import { useContext, useRef } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { AuthContext } from "../../Providers/AuthProvider";
 import login1 from "../../assets/Images/login1.png"
+import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -35,7 +36,16 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        if (result) {
+          console.log(result);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "User login successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         navigate(from, { replace: true });
       })
       .catch((err) => {
