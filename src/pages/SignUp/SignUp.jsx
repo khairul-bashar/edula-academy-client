@@ -62,16 +62,31 @@ const SignUp = () => {
 
         createUser(email, password)
           .then((result) => {
+            console.log(result);
             updateUserProfile(name, imageUrl)
               .then(() => {
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "User created successfully!!!.",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                navigate(from, { replace: true });
+                const saveUser = { name: data.name, email: data.email, image: imageUrl};
+                fetch("http://localhost:3000/users", {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(saveUser),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.insertedId) {
+                      reset();
+                      Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "User created successfully.",
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                      navigate(from, { replace: true });
+                    }
+                  });
               })
               .catch((err) => {
                 setLoading(false);
@@ -108,11 +123,11 @@ const SignUp = () => {
            });
         navigate(from, { replace: true });
       })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err.message);
-        toast.error(err.message);
-      });
+        .catch((err) => {
+          setLoading(false);
+          console.log(err.message);
+          toast.error(err.message);
+        });
   };
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat bg-[url('../src/assets/Images/bg_image.svg')] p-4">

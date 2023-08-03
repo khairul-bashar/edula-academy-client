@@ -6,11 +6,18 @@ import { ImSpinner3 } from "react-icons/im";
 import { AuthContext } from "../../Providers/AuthProvider";
 import login1 from "../../assets/Images/login1.png"
 import Swal from "sweetalert2";
+import GoogleSignIn from "../../components/shared/GoogleSignIn";
 
 
 const Login = () => {
-  const { loading, setLoading, signIn, signInWithGoogle, resetPassword } =
-    useContext(AuthContext);
+  const {
+     signIn,
+     loading,
+     setLoading,
+     signInWithGoogle,
+     createUser,
+     updateUserProfile,
+   } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -32,28 +39,7 @@ const Login = () => {
       });
   };
 
-  // Handle google signin
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        if (result) {
-          console.log(result);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "User login successfully.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err.message);
-        toast.error(err.message);
-      });
-  };
+  
 
   //   handle password reset
   const handleReset = () => {
@@ -147,16 +133,11 @@ const Login = () => {
           <p className="px-3 text-sm dark:text-gray-400">
             Login with social accounts
           </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
+          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700">
+          </div>
         </div>
-        <div
-          onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
-          <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
-        </div>
+            <GoogleSignIn/>
+        
         <p className="px-6 text-sm text-center text-gray-400">
           Don't have an account yet?{" "}
           <Link

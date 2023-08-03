@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from '../../components/shared/Heading/Heading';
+import Heading from '../../../components/shared/Heading/Heading';
 
 const EnrolledClasses = () => {
     return (

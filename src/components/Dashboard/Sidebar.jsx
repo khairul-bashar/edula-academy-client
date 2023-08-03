@@ -1,14 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrSelect } from "react-icons/gr";
+
 import { AiFillHome, AiOutlineBars, AiOutlineHistory } from "react-icons/ai";
 import { LuTextSelect } from "react-icons/lu";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Logo from "../shared/Navbar/Logo";
+import UserSidebar from "./UserSidebar";
+import AdminSidebar from "./AdminSidebar";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import InstructorSidebar from "./InstructorSidebar";
 const Sidebar = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
-  const { user, logOut, role } = useContext(AuthContext);
+  const { user, logOut} = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
   const toggleHandler = (event) => {
@@ -22,6 +28,11 @@ const Sidebar = () => {
     logOut();
     navigate("/");
   };
+
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+  console.log(isInstructor);
+  
   return (
     <>
       {/* Small Screen Navbar */}
@@ -73,45 +84,9 @@ const Sidebar = () => {
             </div>
           </div>
 
-          {/* Nav Items */}
-          <div>
-            <NavLink
-              to="my-classes"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                  isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                }`
-              }
-            >
-              <LuTextSelect className="w-5 h-5" />
-
-              <span className="mx-4 font-medium">My Selected Class</span>
-            </NavLink>
-            <NavLink
-              to="enrolled-classes"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                  isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                }`
-              }
-            >
-              <GrSelect className="w-5 h-5" />
-
-              <span className="mx-4 font-medium">My Enroll Class</span>
-            </NavLink>
-            <NavLink
-              to="payment-history"
-              className={({ isActive }) =>
-                `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                  isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                }`
-              }
-            >
-              <AiOutlineHistory className="w-5 h-5" />
-
-              <span className="mx-4 font-medium">My Payment History</span>
-            </NavLink>
-          </div>
+          {isAdmin && (<AdminSidebar/>)}
+          {isInstructor && (<InstructorSidebar />)}
+          {!isAdmin && !isInstructor && (<UserSidebar/>)}
         </div>
 
         <div>
@@ -128,6 +103,7 @@ const Sidebar = () => {
 
             <span className="mx-4 font-medium">Home</span>
           </NavLink>
+          
           <button
             onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
