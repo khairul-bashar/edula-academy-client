@@ -23,6 +23,7 @@ const Card = ({ course, selected }) => {
     course_details,
     price,
     author_image,
+    author_name,
     rating,
     lesson,
     cartItemId
@@ -116,7 +117,14 @@ const Card = ({ course, selected }) => {
             </p>
           </div>
           <div className="flex items-center justify-between mb-5">
-            <img className="w-10 h-10 rounded-full" src={author_image} alt="" />
+            <div className="flex items-center">
+              <img
+                className="w-10 h-10 rounded-full"
+                src={author_image}
+                alt=""
+              />
+              <h2 className="text-xs ms-2">{author_name}</h2>
+            </div>
             <div className=" flex items-center justify-center gap-2">
               <div className="bg-cyan-400  w-6 h-6 rounded-full flex items-center justify-center">
                 <BsFillPlayCircleFill size={20} />

@@ -32,14 +32,14 @@ const AddCourse = () => {
       .then((imgRes) => {
         if (imgRes.success) {
           const imageURL = imgRes.data.display_url;
-          const { name, price, instructor, availableSeats, description} = data;
+          const { name, price, instructor, availableSeats, description,rating, lesson} = data;
 
           const newItem = {
             course_name: name,
             course_details: description,
             price: price,
-            rating: "",
-            lesson: 20,
+            rating: rating,
+            lesson: lesson,
             author_name: instructor,
             author_image: user?.photoURL,
             author_email: user?.email,
@@ -80,14 +80,14 @@ const AddCourse = () => {
       <Heading title="Add Course" center />
 
       {/* form ar kaj baj  */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4">
         <div className="form-control w-full ">
           <label className="label">
-            <span className="label-text font-semibold">Class Name*</span>
+            <span className="label-text font-semibold">Course Name*</span>
           </label>
           <input
             type="text"
-            placeholder="Dance Name"
+            placeholder="Course Name"
             {...register("name", { required: true, maxLength: 80 })}
             className="input input-bordered w-full "
           />
@@ -107,57 +107,75 @@ const AddCourse = () => {
             className="input input-bordered w-full "
           />
         </div>
-        <div className="flex gap-5 ">
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text font-semibold">
-                Instructor Email*
-              </span>
-            </label>
-            <input
-              type="email"
-              placeholder="Instructor Email "
-              {...register("email", { required: true })}
-              defaultValue={user?.email}
-              readOnly
-              className="input input-bordered w-full "
-            />
-          </div>
-          <div className="form-control w-full">
-            <span className="block font-bold">Sub-Category</span>
-            <CreatableSelect
-              className="w-full py-5"
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
-            />
-          </div>
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text font-semibold">Price*</span>
-            </label>
-            <input
-              type="number"
-              placeholder="Price "
-              {...register("price", { required: true })}
-              className="input input-bordered w-full "
-            />
-          </div>
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text font-semibold">Available Seats*</span>
-            </label>
-            <input
-              type="number"
-              placeholder="availableSeats "
-              {...register("availableSeats", { required: true })}
-              className="input input-bordered w-full "
-            />
-          </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text font-semibold">Instructor Email*</span>
+          </label>
+          <input
+            type="email"
+            placeholder="Instructor Email "
+            {...register("email", { required: true })}
+            defaultValue={user?.email}
+            readOnly
+            className="input input-bordered w-full "
+          />
+        </div>
+        <div className="form-control w-full">
+          <span className="block font-bold">Sub-Category</span>
+          <CreatableSelect
+            className="w-full py-5"
+            defaultValue={selectedOption}
+            onChange={setSelectedOption}
+            options={options}
+          />
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text font-semibold">Price*</span>
+          </label>
+          <input
+            type="number"
+            placeholder="Price "
+            {...register("price", { required: true })}
+            className="input input-bordered w-full "
+          />
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text font-semibold">Available Seats*</span>
+          </label>
+          <input
+            type="number"
+            placeholder="availableSeats "
+            {...register("availableSeats", { required: true })}
+            className="input input-bordered w-full "
+          />
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text font-semibold"> Rating *</span>
+          </label>
+          <input
+            type="number"
+            placeholder="rating "
+            {...register("rating", { required: true })}
+            className="input input-bordered w-full "
+          />
+        </div>
+        <div className="form-control w-full ">
+          <label className="label">
+            <span className="label-text font-semibold"> Lesson *</span>
+          </label>
+          <input
+            type="number"
+            placeholder="lesson "
+            {...register("lesson", { required: true })}
+            className="input input-bordered w-full "
+          />
         </div>
         <div className="form-control w-full pb-12 ">
           <label className="label">
-            <span className="label-text">Course Image </span>
+            <span className="label-text font-semibold">Course Image </span>
           </label>
           <input
             type="file"

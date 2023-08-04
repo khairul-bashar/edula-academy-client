@@ -84,7 +84,8 @@ const CheckoutForm = ({ cart, price }) => {
         date: new Date(),
         quantity: cart.length,
         cartItems: cart.map((item) => item._id),
-        courseName: cart.map((item) => item.name),
+        courseName: cart.map((item) => item.course_name),
+        image: cart.map((item) => item.image),
         status: "service pending",
         availableSeats: cart.map((item) => item.availableSeats),
       };

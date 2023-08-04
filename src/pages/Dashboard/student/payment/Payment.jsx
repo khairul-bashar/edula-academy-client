@@ -12,11 +12,11 @@ import CheckoutForm from './CheckoutForm';
 const Payment = () => {
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
-    const [cart] = useCart();
+  const [cart] = useCart();
+  console.log(cart);
 
   const price = localStorage.getItem("price");
-  console.log(price);
-  console.log(price);
+
     return (
       <div>
         <Heading title="Payment" center primary />

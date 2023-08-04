@@ -13,6 +13,8 @@ const PaymentHistory = () => {
       );
   }, []);
 
+  console.log(data);
+
   return (
     <div className="pt-12">
       <h2 className="text-2xl pb-8">My Total Payment: {data.length}</h2>

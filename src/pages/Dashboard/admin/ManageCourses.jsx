@@ -90,7 +90,7 @@ const ManageCourses = () => {
                     </button>
                   )}
                 </td>
-                <td className="text-center">
+                <td className="text-center flex items-center justify-center">
                   <button
                     onClick={() => handleApproved(course)}
                     className="btn btn-sm btn-outline btn-primary me-2"
