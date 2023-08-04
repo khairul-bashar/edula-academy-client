@@ -27,13 +27,11 @@ const Course = () => {
   console.log(selected);
   
   const [courses] = useCourse(category);
-  console.log(courses);
-  const filteCourse = courses.filter(a => a.status == 'approve')
-  console.log('filte', filteCourse);
+  const filterCourse = courses.filter(a => a.status == 'approve')
   
   const allCourses = category
-    ? filteCourse.filter((course) => course.category == category)
-    : filteCourse;
+    ? filterCourse.filter((course) => course.category == category)
+    : filterCourse;
   
     const [activeTab, setActiveTab] = useState("remote");
     const handleTabClick = (tabName) => {

@@ -6,6 +6,7 @@ import { FaAmazonPay } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loader from "../../../components/shared/Loader";
 import EmptyState from "../../../components/shared/EmtyState";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const [cart,refetch, isLoading] = useCart();
@@ -90,9 +91,9 @@ const MyClasses = () => {
                             </button>
                           </td>
                           <td>
-                            <button className="btn btn-outline btn-sm btn-primary">
+                            <Link to="/dashboard/payment" className="btn btn-outline btn-sm btn-primary">
                               <FaAmazonPay /> Pay
-                            </button>
+                            </Link>
                           </td>
                         </tr>
                       ))}

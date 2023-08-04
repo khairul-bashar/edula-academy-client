@@ -131,7 +131,7 @@ const Card = ({ course, selected }) => {
             <button
               disabled={selected?.includes(_id)}
               onClick={() => handleAddToCart(course)}
-              className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center disabled:bg-cyan-200"
+              className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center disabled:btn-neutral"
             >
               Enroll Now
               <HiOutlineArrowLongRight size={24} />
