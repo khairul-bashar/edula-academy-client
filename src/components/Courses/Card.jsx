@@ -9,7 +9,7 @@ import useCart from "../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
-const Card = ({ course }) => {
+const Card = ({ course, selected }) => {
 
   const {user} = useContext(AuthContext);
     const [, refetch] = useCart();
@@ -25,6 +25,7 @@ const Card = ({ course }) => {
     author_image,
     rating,
     lesson,
+    cartItemId
   } = course;
 
 
@@ -111,7 +112,7 @@ const Card = ({ course }) => {
           <div className="flex-1">
             <h2 className="text-lg font-medium">{course_name}</h2>
             <p className="text-slate-500 text-sm my-4">
-              {course_details.slice(0, 80)}.........
+              {course_details}.........
             </p>
           </div>
           <div className="flex items-center justify-between mb-5">
@@ -127,7 +128,11 @@ const Card = ({ course }) => {
           <hr />
           <div className="flex items-center justify-between mt-4">
             <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
-            <button onClick={()=>handleAddToCart(course)} className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center">
+            <button
+              disabled={selected?.includes(_id)}
+              onClick={() => handleAddToCart(course)}
+              className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center disabled:bg-cyan-200"
+            >
               Enroll Now
               <HiOutlineArrowLongRight size={24} />
             </button>

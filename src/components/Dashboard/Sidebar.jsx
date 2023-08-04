@@ -31,7 +31,7 @@ const Sidebar = () => {
 
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
-  console.log(isInstructor);
+  
   
   return (
     <>

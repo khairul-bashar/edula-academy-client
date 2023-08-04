@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Subtitle from '../shared/Heading/Subtitle';
 import Heading from '../shared/Heading/Heading';
 import Container from '../shared/Container';
@@ -8,15 +8,32 @@ import Button from '../Button/Button';
 import { Helmet } from 'react-helmet-async';
 import useCourse from '../../hooks/useCourse';
 import { useSearchParams } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
 
 const Course = () => {
   const [params, setParams] = useSearchParams('');
   const category = params.get("category");
+  const [cart, refetch, isLoading] = useCart();
+  // console.log(cart);
+  const [selected, setSelected] = useState([])
 
 
+  useEffect(() => {
+    if (cart.length > 0) {
+      setSelected(cart.map((single) => single.cartItemId));
+    }
+  }, [cart])
+  
+  console.log(selected);
   
   const [courses] = useCourse(category);
-  const allCourses = category ? courses.filter(course => course.category == category) : courses;
+  console.log(courses);
+  const filteCourse = courses.filter(a => a.status == 'approve')
+  console.log('filte', filteCourse);
+  
+  const allCourses = category
+    ? filteCourse.filter((course) => course.category == category)
+    : filteCourse;
   
     const [activeTab, setActiveTab] = useState("remote");
     const handleTabClick = (tabName) => {
@@ -33,7 +50,7 @@ const Course = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10">
           {allCourses.map((course) => (
-            <Card key={course._id} course={course} />
+            <Card key={course._id} selected={selected} course={course} />
           ))}
         </div>
         <div>

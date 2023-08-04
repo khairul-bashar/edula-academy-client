@@ -14,7 +14,7 @@ const ManageStudent = () => {
      return res.data;
    });
 
-  const handleDelete = (user) => {};
+  
   const handleMakeAdmin = (user) => {
     fetch(`http://localhost:3000/users/admin/${user._id}`, {
       method: "PATCH",
@@ -55,6 +55,32 @@ const ManageStudent = () => {
           });
         }
       });
+  };
+
+
+  const handleDelete = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, delete it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/user/${user._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire(`${user.name} has been deleted success`);
+            }
+          });
+      }
+    });
   };
 
   return (
