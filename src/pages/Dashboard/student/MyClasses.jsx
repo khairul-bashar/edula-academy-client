@@ -36,6 +36,13 @@ const MyClasses = () => {
        }
      });
    };
+  
+   
+  
+  const handlePayment = item => {
+    const price = item.price;
+    localStorage.setItem("price", price);
+  }
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -91,8 +98,10 @@ const MyClasses = () => {
                             </button>
                           </td>
                           <td>
-                            <Link to="/dashboard/payment" className="btn btn-outline btn-sm btn-primary">
-                              <FaAmazonPay /> Pay
+                            <Link to="/dashboard/payment">
+                              <button onClick={()=>handlePayment(item)} className="btn btn-outline btn-sm btn-primary">
+                                <FaAmazonPay /> Pay
+                              </button>
                             </Link>
                           </td>
                         </tr>

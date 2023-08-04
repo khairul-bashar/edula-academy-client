@@ -1,68 +1,51 @@
-import React from 'react';
-import Heading from '../../../components/shared/Heading/Heading';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const PaymentHistory = () => {
-    return (
-      <div className="container mx-auto px-4 sm:px-8">
-        <div className="flex justify-center">
-          <Heading title="Payment History" primary/>
-        </div>
-        <div className="py-8">
-          <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-            <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Title
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Location
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Price
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      From
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      To
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Delete
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                    >
-                      Update
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-            </div>
-          </div>
-        </div>
+  const [data, setData] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/payments?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) =>
+        setData(data.sort((a, b) => new Date(b.date) - new Date(a.date)))
+      );
+  }, []);
+
+  return (
+    <div className="pt-12">
+      <h2 className="text-2xl pb-8">My Total Payment: {data.length}</h2>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra w-full">
+          {/* head */}
+          <thead className="bg-red-500 text-white">
+            <tr>
+              <th>serial</th>
+              {/* <th>Dance Name</th> */}
+              <th>Time & Date</th>
+              <th>Total Paid $$</th>
+              <th>Transaction ID</th>
+            </tr>
+          </thead>
+          <tbody className="bg-green-100">
+            {data.map((user, index) => (
+              <tr key={user._id}>
+                <th>{index + 1}</th>
+                <td>
+                  {new Date(user.date).toLocaleDateString()}{" "}
+                  <span>({new Date(user.date).toLocaleTimeString()})</span>
+                </td>
+                <td>{user.price}</td>
+                <td>{user.transactionId}</td>
+                <td></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    );
+    </div>
+  );
 };
 
 export default PaymentHistory;

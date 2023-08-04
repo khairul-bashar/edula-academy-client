@@ -17,7 +17,7 @@ import InstructorRoute from "./InstructorRoute";
 import InstructorCourse from "../pages/Dashboard/instructor/InstructorCourse";
 import AdminRoute from "./AdminRoute";
 import ManageStudent from "../pages/Dashboard/admin/ManageStudent";
-import Payment from "../pages/Dashboard/student/Payment";
+import Payment from "../pages/Dashboard/student/payment/Payment";
 
 const router = createBrowserRouter([
   {
