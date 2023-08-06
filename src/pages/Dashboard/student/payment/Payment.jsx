@@ -13,7 +13,6 @@ const Payment = () => {
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
   const [cart] = useCart();
-  console.log(cart);
 
   const price = localStorage.getItem("price");
 

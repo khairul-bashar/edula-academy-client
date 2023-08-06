@@ -8,7 +8,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../../Providers/AuthProvider";
 
 const CheckoutForm = ({ cart, price }) => {
-  //   console.log('cart problem', cart);
+    console.log('cart problem', cart);
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -78,7 +78,8 @@ const CheckoutForm = ({ cart, price }) => {
       // save payment information to the server
       // console.log('from payment',cart);
       const payment = {
-        email: user?.email,
+        id: cart[0]['_id'],
+        email: user.email,
         transactionId: paymentIntent.id,
         price,
         date: new Date(),

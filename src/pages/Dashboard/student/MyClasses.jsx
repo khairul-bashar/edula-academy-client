@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 const MyClasses = () => {
   const [cart,refetch, isLoading] = useCart();
-  // console.log(cart);
 
    const handleDelete = (item) => {
      Swal.fire({

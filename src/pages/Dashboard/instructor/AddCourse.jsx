@@ -43,7 +43,7 @@ const AddCourse = () => {
             author_name: instructor,
             author_image: user?.photoURL,
             author_email: user?.email,
-            availableSeats: availableSeats,
+            availableSeats: parseInt(availableSeats),
             image: imageURL,
             status: "pending",
             category: selectedOption.value,
