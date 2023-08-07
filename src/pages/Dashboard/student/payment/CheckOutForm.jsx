@@ -1,11 +1,11 @@
 /** @format */
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import useAuth from "../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const CheckOutForm = () => {
   const stripe = useStripe();
@@ -112,9 +112,9 @@ const CheckOutForm = () => {
             style: {
               base: {
                 fontSize: "16px",
-                color: "#000000",
+                color: "#FCBAAD",
                 "::placeholder": {
-                  color: "#000024",
+                  color: "#E48586",
                 },
               },
               invalid: {

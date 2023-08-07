@@ -39,6 +39,35 @@ const ManageCourses = () => {
       });
   };
 
+
+  const handleDelete = (item) => {
+    console.log(item);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://summer-camp-server-ten-sigma.vercel.app/courses/${item._id}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
     
   return (
     <div>
@@ -101,7 +130,7 @@ const ManageCourses = () => {
                     approve
                   </button>
                   <button
-                    onClick={() => handleDelete()}
+                    onClick={() => handleDelete(course)}
                     className="btn btn-sm btn-outline btn-primary"
                   >
                     <AiOutlineDelete />

@@ -3,6 +3,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import MainLayout from "../Layout/MainLayout";
 import Course from "../components/Courses/Course";
 import Teacher from "../components/Teacher/Teacher";
+import Page404 from "../components/shared/Page-404";
 import ManageCourses from "../pages/Dashboard/admin/ManageCourses";
 import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 import AddCourse from "../pages/Dashboard/instructor/AddCourse";
@@ -19,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Page404/>,
     element: <MainLayout />,
     children: [
       { path: "/", element: <Home /> },

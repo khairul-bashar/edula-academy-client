@@ -74,7 +74,7 @@ const Card = ({ course, selected, userRole }) => {
 
   return (
     <div className="col-span-1 cursor-pointer group">
-      <div className="flex flex-col md:flex-row bg-white p-4 rounded-sm shadow-md gap-3 w-full h-[300px]">
+      <div className="flex flex-col md:flex-row bg-white p-4 rounded-sm shadow-md gap-3 w-full h-[350px]">
         <div
           className="
             aspect-square 
@@ -126,6 +126,16 @@ const Card = ({ course, selected, userRole }) => {
               </div>
               <span className="text-xs text-neutral-500">{lesson} Lessons</span>
             </div>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <p>
+              <span className="font-bold text-neutral-500">Price:</span> ${price}
+            </p>
+            <p>
+              <span className="font-bold text-neutral-500">Seats: </span>
+              {availableSeats}
+            </p>
           </div>
 
           <hr />

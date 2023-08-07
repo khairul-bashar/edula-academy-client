@@ -10,7 +10,7 @@ const PaymentHistory = () => {
       <Helmet>
         <title> Edula | payment history</title>
       </Helmet>
-      <Heading title={"Your Payment history"} />
+      <Heading title={"Your Payment history"}  primary/>
       <EnrolledClasses historyOn={true} />
     </>
   );

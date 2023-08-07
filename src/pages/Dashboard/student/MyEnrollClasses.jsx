@@ -11,7 +11,7 @@ import StudentClassTable from "./StudentClassTable";
 const MyEnrollClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
-  console.log(user.email);
+
 
   const {
     data: selectedClass = [],

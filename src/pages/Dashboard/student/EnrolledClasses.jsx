@@ -1,13 +1,13 @@
 /** @format */
 
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import EmptyState from "../../../components/shared/EmtyState";
 import Heading from "../../../components/shared/Heading/Heading";
 import Loader from "../../../components/shared/Loader";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import StudentClassTable from "./StudentClassTable";
-import EmptyState from "../../../components/shared/EmtyState";
 
 const EnrolledClasses = ({ historyOn }) => {
   const [axiosSecure] = useAxiosSecure();
@@ -32,7 +32,7 @@ const EnrolledClasses = ({ historyOn }) => {
       {historyOn ? (
         ""
       ) : (
-        <Heading subTitle={"Enrolled classes"} title={"Your Classes"} />
+        <Heading subTitle={"Enrolled classes"} title={"Your Classes"} primary />
       )}
 
       {isLoading && <Loader />}
