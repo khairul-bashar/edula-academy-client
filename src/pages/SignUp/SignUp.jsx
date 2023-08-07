@@ -1,12 +1,12 @@
-import { Link, useFormAction, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { useContext, useRef } from "react";
 import { ImSpinner3 } from "react-icons/im";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import login2 from "../../assets/Images/login2.png";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 
 const SignUp = () => {
   const {
@@ -65,14 +65,17 @@ const SignUp = () => {
             console.log(result);
             updateUserProfile(name, imageUrl)
               .then(() => {
-                const saveUser = { name: data.name, email: data.email, image: imageUrl};
-                fetch("http://localhost:3000/users", {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(saveUser),
-                })
+                const saveUser = { name: data.name, email: data.email, image: imageUrl, role: "student"};
+                fetch(
+                  "https://summer-camp-server-ten-sigma.vercel.app/users",
+                  {
+                    method: "POST",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify(saveUser),
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     if (data.insertedId) {
@@ -184,12 +187,24 @@ const SignUp = () => {
             <div>
               <div className="flex justify-between">
                 <label htmlFor="password" className="text-sm mb-2">
-                  Password
+                  {errors.password ? (
+                    <span className="text-red-500 label-text">
+                      {errors.password?.message}
+                    </span>
+                  ) : (
+                    <span className="label-text">Password*</span>
+                  )}
                 </label>
               </div>
               <input
                 type="password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: "Password is required",
+                  pattern: {
+                    value: /^(?=.*[A-Z])(?=.*[\W_])(?=.*\d).{6,}$/,
+                    message: "use number and letter",
+                  },
+                })}
                 required
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"

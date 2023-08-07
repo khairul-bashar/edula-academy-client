@@ -1,11 +1,11 @@
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import Swal from "sweetalert2";
-import { useContext, useState } from "react";
 // import Title from "../../components/Title/Title";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Heading from "../../../components/shared/Heading/Heading";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const ImgKey = "7a94752decad5225cc386ba202e13d5e";
 
 // console.log(ImgKey);
@@ -77,6 +77,7 @@ const AddCourse = () => {
 
   return (
     <div className="w-full px-10 h-screen">
+      
       <Heading title="Add Course" center />
 
       {/* form ar kaj baj  */}

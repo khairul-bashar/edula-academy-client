@@ -1,9 +1,7 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import Heading from "../../../components/shared/Heading/Heading";
+import React from "react";
+import { Helmet } from "react-helmet-async";
 import { AiOutlineDelete } from "react-icons/ai";
-import { GiTeacher } from "react-icons/gi";
-import { RiAdminFill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -19,9 +17,12 @@ const ManageCourses = () => {
     );
 
   const handleApproved = (course) => {
-    fetch(`http://localhost:3000/allCourses/approved/${course._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://summer-camp-server-ten-sigma.vercel.app/allCourses/approved/${course._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -42,7 +43,9 @@ const ManageCourses = () => {
   return (
     <div>
       <div>
-        {/* <Heading title={`Total Course: ${users.length}`} center primary /> */}
+        <Helmet>
+          <title>Edula | Manage Course</title>
+        </Helmet>
       </div>
       <div className="overflow-x-auto">
         <table className="table">

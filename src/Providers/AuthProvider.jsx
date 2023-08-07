@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -10,8 +10,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase-config";
-import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -21,6 +21,9 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  //payment context
+  const [paymentInfo, setPaymentInfo] = useState({});
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -60,16 +63,16 @@ const AuthProvider = ({ children }) => {
       // get and set token
       if (currentUser) {
         axios
-          .post("http://localhost:3000/jwt", {
+          .post("https://summer-camp-server-ten-sigma.vercel.app/jwt", {
             email: currentUser?.email,
           })
           .then((data) => {
             localStorage.setItem("access-token", data.data.token);
           });
-        } else {
-          localStorage.removeItem("access-token");
-        }
-        setLoading(false);
+      } else {
+        localStorage.removeItem("access-token");
+      }
+      setLoading(false);
     });
     return () => {
       return unsubscribe();
@@ -86,6 +89,8 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     logOut,
     updateUserProfile,
+    paymentInfo,
+    setPaymentInfo,
   };
 
   return (

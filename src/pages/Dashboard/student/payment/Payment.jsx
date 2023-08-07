@@ -2,26 +2,26 @@ import React from 'react';
 import Heading from '../../../../components/shared/Heading/Heading';
 import Subtitle from '../../../../components/shared/Heading/Subtitle';
 import { loadStripe } from '@stripe/stripe-js';
-import useCart from '../../../../hooks/useCart';
 import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
+import CheckoutForm from './CheckOutForm';
 
 
-// console.log(stripePromise);
+
 
 const Payment = () => {
+
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 
-  const [cart] = useCart();
+  
 
-  const price = localStorage.getItem("price");
+ 
 
     return (
       <div>
         <Heading title="Payment" center primary />
         <Subtitle label="Please Process" center />
         <Elements stripe={stripePromise}>
-          <CheckoutForm cart={cart} price={price}></CheckoutForm>
+          <CheckoutForm />
         </Elements>
       </div>
     );

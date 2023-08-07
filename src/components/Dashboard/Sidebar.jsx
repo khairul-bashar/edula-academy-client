@@ -1,16 +1,14 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
+import { GrLogout } from "react-icons/gr";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { GrLogout, GrSelect } from "react-icons/gr";
 
-import { AiFillHome, AiOutlineBars, AiOutlineHistory } from "react-icons/ai";
-import { LuTextSelect } from "react-icons/lu";
+import { AiFillHome, AiOutlineBars } from "react-icons/ai";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useRole from "../../hooks/useRole";
 import Logo from "../shared/Navbar/Logo";
-import UserSidebar from "./UserSidebar";
 import AdminSidebar from "./AdminSidebar";
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
 import InstructorSidebar from "./InstructorSidebar";
+import UserSidebar from "./UserSidebar";
 const Sidebar = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
@@ -29,8 +27,8 @@ const Sidebar = () => {
     navigate("/");
   };
 
-  const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor();
+  const [userRole, refetch, isLoading] = useRole();
+ 
   
   
   return (
@@ -84,9 +82,15 @@ const Sidebar = () => {
             </div>
           </div>
 
-          {isAdmin && (<AdminSidebar/>)}
-          {isInstructor && (<InstructorSidebar />)}
-          {!isAdmin && !isInstructor && (<UserSidebar/>)}
+          
+
+          {userRole === "admin" ? (
+            <AdminSidebar />
+          ) : userRole === "instructor" ? (
+            <InstructorSidebar />
+          ) : (
+            <UserSidebar />
+          )}
         </div>
 
         <div>
@@ -103,7 +107,7 @@ const Sidebar = () => {
 
             <span className="mx-4 font-medium">Home</span>
           </NavLink>
-          
+
           <button
             onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

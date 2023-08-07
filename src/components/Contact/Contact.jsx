@@ -1,4 +1,4 @@
-import React from "react";
+
 import aboutImg from "../../assets/Images/about_us.png";
 import Button from "../Button/Button";
 import Container from "../shared/Container";

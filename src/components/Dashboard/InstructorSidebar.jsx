@@ -1,13 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { SiCoursera } from "react-icons/si";
-import {
-  AiOutlineUsergroupAdd,
-  AiOutlineBars,
-  AiOutlineHistory,
-} from "react-icons/ai";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+
 import { BiSolidAddToQueue } from "react-icons/bi";
+import { SiCoursera } from "react-icons/si";
+import { NavLink } from "react-router-dom";
 const InstructorSidebar = () => {
   return (
     <>

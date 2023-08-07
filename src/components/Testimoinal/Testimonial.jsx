@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import React, { useEffect, useState } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Navigation } from "swiper/modules";
 import Container from "../shared/Container";
-import Subtitle from "../shared/Heading/Subtitle";
 import Heading from "../shared/Heading/Heading";
+import Subtitle from "../shared/Heading/Subtitle";
 const Testimonial = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch("http://localhost:3000/reviews")
+        fetch("https://summer-camp-server-ten-sigma.vercel.app/reviews")
           .then((res) => res.json())
           .then((data) => setReviews(data));
     },[])

@@ -1,36 +1,39 @@
+/** @format */
+
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useContext, useEffect } from "react";
-import { useState } from "react";
-
-
-import { toast } from "react-hot-toast";
+import useAuth from "../../../../hooks/useAuth";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { AuthContext } from "../../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ cart, price }) => {
-    console.log('cart problem', cart);
+const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const { user } = useContext(AuthContext);
-  const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
+  const navigate = useNavigate();
+  const [axiosSecure] = useAxiosSecure();
+  const { user, paymentInfo } = useAuth();
+
+  let price = parseFloat(paymentInfo?.price).toFixed(2);
+
+  if (!price || isNaN(price)) {
+    price = 0;
+  }
 
   useEffect(() => {
-    //   console.log(price);
     if (price > 0) {
       axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-        // console.log(res.data.clientSecret)
         setClientSecret(res.data.clientSecret);
-        localStorage.removeItem("price");
       });
     }
-  }, [price]);
+  }, [price, axiosSecure]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleCheckOut = async (e) => {
+    e.preventDefault();
 
     if (!stripe || !elements) {
       return;
@@ -47,11 +50,9 @@ const CheckoutForm = ({ cart, price }) => {
     });
 
     if (error) {
-      // console.log('error', error)
       setCardError(error.message);
     } else {
       setCardError("");
-      // console.log('payment method', paymentMethod)
     }
 
     setProcessing(true);
@@ -68,49 +69,52 @@ const CheckoutForm = ({ cart, price }) => {
       });
 
     if (confirmError) {
-      // console.log(confirmError);
+      console.log(confirmError);
     }
 
-    // console.log('payment intent', paymentIntent)
     setProcessing(false);
+
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
-      // save payment information to the server
-      // console.log('from payment',cart);
-      const payment = {
-        id: cart[0]['_id'],
-        email: user.email,
+
+      const paymentDetail = {
+        userId: paymentInfo._id,
+        email: user?.email,
         transactionId: paymentIntent.id,
-        price,
+        price: parseFloat(price),
+        classId: paymentInfo?.classId,
+        image: paymentInfo.image,
         date: new Date(),
-        quantity: cart.length,
-        cartItems: cart.map((item) => item._id),
-        courseName: cart.map((item) => item.course_name),
-        image: cart.map((item) => item.image),
-        status: "service pending",
-        availableSeats: cart.map((item) => item.availableSeats),
       };
-      // console.log('payment items',payment);
-      axiosSecure.post("/payments", payment).then((res) => {
-        // console.log('payment post',res.data);
-        if (res.data.insertResult.insertedId) {
-          toast("Successfully posted a payment");
+
+      axiosSecure.post("/payment", paymentDetail).then((res) => {
+        if (res.data) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Congrats ${user?.displayName}, payment successful !`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard/student/my-enrolled");
         }
       });
+
+      //reset price
+      price = 0;
     }
   };
-
   return (
     <>
-      <form className="w-2/3 m-8 mx-auto" onSubmit={handleSubmit}>
+      <form className="w-2/3 m-8" onSubmit={handleCheckOut}>
         <CardElement
           options={{
             style: {
               base: {
                 fontSize: "16px",
-                color: "#424770",
+                color: "#000000",
                 "::placeholder": {
-                  color: "#aab7c4",
+                  color: "#000024",
                 },
               },
               invalid: {
@@ -120,21 +124,22 @@ const CheckoutForm = ({ cart, price }) => {
           }}
         />
         <button
-          className="btn btn-secondary btn-md mt-8 mx-auto px-8"
-          type="submit"
           disabled={!stripe || !clientSecret || processing}
+          className="btn border-b-2 border-white rounded-md btn-sm mt-10 disabled:opacity-50"
+          type="submit"
         >
           Pay
         </button>
       </form>
-      {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
+      {cardError && <p className="text-red-600 p-2">{cardError}</p>}
+
       {transactionId && (
-        <p className="text-green-500">
-          Transaction complete with transactionId: {transactionId}
+        <p className="text-white p-2">
+          Your transactionId is : {transactionId}
         </p>
       )}
     </>
   );
 };
 
-export default CheckoutForm;
+export default CheckOutForm;

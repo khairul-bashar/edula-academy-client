@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const GoogleSignIn = () => {
   const {
@@ -24,9 +24,10 @@ const GoogleSignIn = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
           image: loggedUser.photoURL,
+          role:"student"
 
         };
-        fetch("http://localhost:3000/users", {
+        fetch("https://summer-camp-server-ten-sigma.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -42,7 +43,7 @@ const GoogleSignIn = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            navigate(from, { replace: true })
+            navigate(from, { replace: true });
           });
       })
       .catch((err) => {

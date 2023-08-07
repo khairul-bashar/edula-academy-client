@@ -1,20 +1,20 @@
 // import HeartButton from "../Button/HeartButton";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import Swal from "sweetalert2";
+import { useState } from "react";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
-import { AuthContext } from "../../Providers/AuthProvider";
-import useCart from "../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const Card = ({ course, selected }) => {
-
-  const {user} = useContext(AuthContext);
-    const [, refetch] = useCart();
-    const navigate = useNavigate();
-    const location = useLocation();
+const Card = ({ course, selected, userRole }) => {
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [disabled, setDisabled] = useState(false);
 
   const {
     _id,
@@ -26,57 +26,52 @@ const Card = ({ course, selected }) => {
     author_name,
     rating,
     lesson,
-    cartItemId
+    cartItemId,
+    availableSeats
   } = course;
 
+  const handleEnrolled = async (id) => {
+    const enrolledClass = {
+      classId: _id,
+      price: parseFloat(price),
+      course_name,
+      email: user?.email,
+      image,
+    };
 
- const handleAddToCart = (course) => {
-  //  console.log(course);
-   if (user && user.email) {
-     const cartItem = {
-       cartItemId: _id,
-       course_name,
-       image,
-       price,
-       email: user.email,
-     };
-     fetch("http://localhost:3000/carts", {
-       method: "POST",
-       headers: {
-         "content-type": "application/json",
-       },
-       body: JSON.stringify(cartItem),
-     })
-       .then((res) => res.json())
-       .then((data) => {
-         if (data.insertedId) {
-           refetch(); // refetch cart to update the number of items in the cart
-           Swal.fire({
-             position: "center",
-             icon: "success",
-             title: "Complete payment for confirm!!!.",
-             showConfirmButton: false,
-             timer: 1500,
-           });
-         }
-       });
-   } else {
-     Swal.fire({
-       title: "Please login to order the food",
-       icon: "warning",
-       showCancelButton: true,
-       confirmButtonColor: "#3085d6",
-       cancelButtonColor: "#d33",
-       confirmButtonText: "Login now!",
-     }).then((result) => {
-       if (result.isConfirmed) {
-         navigate("/login", { state: { from: location } });
-       }
-     });
-   }
- };
-  
-  
+    if (user) {
+      await axiosSecure
+        .put(`/enrolled/${id}`, enrolledClass)
+        .then(async (data) => {
+          if (data.data) {
+            setDisabled(true);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Complete payment for confirm !",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    }
+
+    if (!user) {
+      Swal.fire({
+        title: "Please Sign in for enroll class",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#8C9333",
+        cancelButtonColor: "#d336",
+        confirmButtonText: "Sign in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signUp", { state: { from: location } });
+        }
+      });
+    }
+  };
+
   return (
     <div className="col-span-1 cursor-pointer group">
       <div className="flex flex-col md:flex-row bg-white p-4 rounded-sm shadow-md gap-3 w-full h-[300px]">
@@ -137,9 +132,14 @@ const Card = ({ course, selected }) => {
           <div className="flex items-center justify-between mt-4">
             <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
             <button
-              disabled={selected?.includes(_id)}
-              onClick={() => handleAddToCart(course)}
-              className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center disabled:btn-neutral"
+              disabled={
+                userRole === "admin" ||
+                userRole === "instructor" ||
+                availableSeats == 0 ||
+                disabled
+              }
+              onClick={() => handleEnrolled(_id)}
+              className="bg-cyan-400 text-white py-2 px-3 rounded-md hover:bg-primary hover:text-neutral-100 transition-all flex items-center justify-center disabled:bg-neutral-600"
             >
               Enroll Now
               <HiOutlineArrowLongRight size={24} />
